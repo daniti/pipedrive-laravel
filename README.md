@@ -14,7 +14,7 @@ rename .env.example to .env, and run
 ```
 php artisan key:generate
 ```
-open your .env file and fill in the following parameters
+fill your .env file with the correct value and add the following parameters
 ```
 PIPEDRIVE_CLIENT_ID=
 PIPEDRIVE_CLIENT_SECRET=
