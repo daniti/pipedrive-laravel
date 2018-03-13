@@ -22,4 +22,10 @@ PIPEDRIVE_REDIRECT_URI=
 
 TOKEN_PASSWORD=
 ```
+Run
+```
+php artisan migrate
+```
+# You're done!
+
 Build something amazing!
