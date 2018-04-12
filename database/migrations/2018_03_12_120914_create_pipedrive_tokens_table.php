@@ -17,7 +17,6 @@ class CreatePipedrivetokensTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->text('body');
-            $table->string('salt');
             $table->timestamps();
         });
     }

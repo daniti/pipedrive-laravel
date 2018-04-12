@@ -9,7 +9,7 @@ class PipedriveToken extends Model
     protected $table = 'pipedrive_tokens';
 
     protected $fillable = [
-        'user_id', 'body', 'salt'
+        'user_id', 'body'
     ];
 
     public function user()
@@ -24,39 +24,21 @@ class PipedriveToken extends Model
 
     public function store($token)
     {
-        $salt = $this->token_salt();
-
-        $this->body = $this->encrypt_token($token, $salt);
-        $this->salt = $salt;
+        $this->body = $this->encrypt_token($token);
 
         $this->save();
     }
 
-    protected function token_salt()
-    {
-        return password_hash(env('TOKEN_PASSWORD'), PASSWORD_BCRYPT, ['cost' => 12]);
-    }
-
     protected function decrypt_token()
     {
-        $key = env('TOKEN_PASSWORD') . $this->salt;
-        $iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
-
-        return openssl_decrypt(base64_decode($this->body), 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+        return decrypt($this->body);
     }
 
-    protected function encrypt_token($token, $salt)
+    protected function encrypt_token($token)
     {
         $body = json_encode($token);
 
-        $password = env('TOKEN_PASSWORD');
-
-        $key = $password . $salt;
-        echo "Key:" . $key . "\n";
-
-        $iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
-
-        return base64_encode(openssl_encrypt($body, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv));
+        return encrypt($body);
     }
 
 }
