@@ -6,6 +6,7 @@ This is a quick-start application that you can re-use to build your own app for 
 Users can login with Pipedrive, using the [Laravel Socialite](https://github.com/SocialiteProviders/Providers) plugin.<br>In all controllers you have access to an instance of this [PHP Client Library](https://github.com/IsraelOrtuno/pipedrive), ready to use.
 
 # How to start
+You should already have a Pipedrive Sandbox account and a draft app created. If you don't, please [do that first](https://pipedrive.readme.io/docs/marketplace-creating-a-proper-app).
 
 Clone the repository
 
