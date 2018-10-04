@@ -2,9 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -16,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'pipedrive_user_id', 'pipedrive_company_id'
+        'name', 'email', 'password', 'pipedrive_user_id', 'pipedrive_company_id',
     ];
 
     /**
@@ -30,13 +29,19 @@ class User extends Authenticatable
 
     public function storeToken($token)
     {
-        $pipedrive_token = PipedriveToken::firstOrNew(['user_id' => $this->id]);
-        $pipedrive_token->store($token);
+        $pipedrive_token_model = PipedriveTokenModel::firstOrNew(['user_id' => $this->id]);
 
+        $pipedrive_token = new \Devio\Pipedrive\PipedriveToken([
+            'accessToken' => $token['access_token'],
+            'refreshToken' => $token['refresh_token'],
+            'expiresAt' => time() + $token['expires_in'],
+        ]);
+
+        $pipedrive_token_model->store($pipedrive_token);
     }
 
     public function pipedrive_token()
     {
-        return $this->hasOne(PipedriveToken::class);
+        return $this->hasOne(PipedriveTokenModel::class);
     }
 }

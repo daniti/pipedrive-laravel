@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "025639dc3db8503429369a3f9724e007",
+    "content-hash": "ffdf86e4a5a7e5fa608be5992a3085b7",
     "packages": [
+        {
+            "name": "devio/pipedrive",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IsraelOrtuno/pipedrive.git",
+                "reference": "97d7ca4250b8019d1ac809a638a6a7aa63fe2c0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IsraelOrtuno/pipedrive/zipball/97d7ca4250b8019d1ac809a638a6a7aa63fe2c0a",
+                "reference": "97d7ca4250b8019d1ac809a638a6a7aa63fe2c0a",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0|~5.0|~4.0",
+                "illuminate/support": "~4.0|~5.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^2.4",
+                "symfony/var-dumper": "^2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Devio\\Pipedrive\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Israel Ortuño",
+                    "email": "ai.ortuno@gmail.com"
+                }
+            ],
+            "description": "Complete Pipedrive API client for PHP and/or Laravel",
+            "keywords": [
+                "api",
+                "client",
+                "laravel",
+                "pipedrive"
+            ],
+            "time": "2018-10-03T08:03:37+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
